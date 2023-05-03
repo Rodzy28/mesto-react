@@ -10,6 +10,7 @@ export default function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(false);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -20,11 +21,15 @@ export default function App() {
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setSelectedCard(false);
   }
 
   return (
@@ -35,12 +40,9 @@ export default function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
+          onCardClick={handleCardClick}
         />
         <Footer />
-
-        <template className="place__card">
-
-        </template>
 
         <PopupWithForm
           name="profile"
@@ -93,7 +95,7 @@ export default function App() {
           <span className="popup__input-error avatar-input-error"></span>
         </PopupWithForm>
 
-        <ImagePopup />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
     </div>
   );
