@@ -5,7 +5,7 @@
 
 ### Ссылка на работу:
 
-* [Тык!](https://rodzy28.github.io/mesto/index.html)
+* [Тык!](https://rodzy28.github.io/mesto-react/)
 
 ### Чеклист:
 
