@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Header />
         <Main />
         <Footer />
+
         <template className="place__card">
           <li className="place__item">
             <img className="place__picture" src="#" alt="" />
@@ -24,67 +26,53 @@ export default function App() {
             </div>
           </li>
         </template>
+
         <PopupWithForm
           name="profile"
           title="Редактировать профиль"
+          buttonText="Сохранить"
+          ariaLabel="Закрыть окно редактирования профиля"
         >
-          <button type="button" className="popup__close-button" aria-label="Закрыть окно редактирования профиля"></button>
-          <form className="popup__form-profile popup__form" name="profile" method="post" noValidate>
-            <input id="name-input" className="popup__input popup__input_type_name" type="text" name="name"
-              placeholder="Введите имя" minLength="2" maxLength="40" required />
-            <span className="popup__input-error name-input-error"></span>
-            <input id="job-input" className="popup__input popup__input_type_job" type="text" name="job"
-              placeholder="Введите профессию" minLength="2" maxLength="200" required />
-            <span className="popup__input-error job-input-error"></span>
-            <button type="submit" className="popup__save-button">Сохранить</button>
-          </form>
+          <input id="name-input" className="popup__input popup__input_type_name" type="text" name="name"
+            placeholder="Введите имя" minLength="2" maxLength="40" required />
+          <span className="popup__input-error name-input-error"></span>
+          <input id="job-input" className="popup__input popup__input_type_job" type="text" name="job"
+            placeholder="Введите профессию" minLength="2" maxLength="200" required />
+          <span className="popup__input-error job-input-error"></span>
         </PopupWithForm>
-        <div className="popup popup_type_card">
-          <div className="popup__container">
-            <h2 className="popup__header">Новое место</h2>
-            <button type="button" className="popup__close-button" aria-label="Закрыть окно редактирования карточки"></button>
-            <form className="popup__form-card popup__form" name="card" method="post" noValidate>
-              <input id="place-input" className="popup__input popup__input_type_place" type="text" name="place"
-                placeholder="Название" minLength="2" maxLength="30" required />
-              <span className="popup__input-error place-input-error"></span>
-              <input id="src-input" className="popup__input popup__input_type_src" type="url" name="url"
-                placeholder="Ссылка на картинку" required />
-              <span className="popup__input-error src-input-error"></span>
-              <button type="submit" className="popup__save-button">Создать</button>
-            </form>
-          </div>
-        </div>
 
-        <div className="popup popup_type_image">
-          <figure className="popup__image-figure">
-            <img className="popup__image-viewing" src="#" alt="" />
-            <button type="button" className="popup__close-button" aria-label="Закрыть окно просмотра фото"></button>
-            <figcaption className="popup__image-title"></figcaption>
-          </figure>
-        </div>
+        <PopupWithForm
+          name="card"
+          title="Новое место"
+          buttonText="Создать"
+          ariaLabel="Закрыть окно редактирования карточки"
+        >
+          <input id="place-input" className="popup__input popup__input_type_place" type="text" name="place"
+            placeholder="Название" minLength="2" maxLength="30" required />
+          <span className="popup__input-error place-input-error"></span>
+          <input id="src-input" className="popup__input popup__input_type_src" type="url" name="url"
+            placeholder="Ссылка на картинку" required />
+          <span className="popup__input-error src-input-error"></span>
+        </PopupWithForm>
 
-        <div className="popup popup_type_confirm">
-          <div className="popup__container">
-            <h2 className="popup__header">Вы уверены?</h2>
-            <form className="popup__form" name="confirm">
-              <button type="submit" className="popup__save-button popup__save-button_margin-top">Да</button>
-            </form>
-            <button type="button" className="popup__close-button" aria-label="Закрыть окно подтверждения удаления"></button>
-          </div>
-        </div>
+        <PopupWithForm
+          name="confirm"
+          title="Вы уверены?"
+          ariaLabel="Закрыть окно подтверждения удаления"
+          buttonText="Да" />
 
-        <div className="popup popup_type_avatar">
-          <div className="popup__container">
-            <h2 className="popup__header">Обновить аватар</h2>
-            <button type="button" className="popup__close-button" aria-label="Закрыть окно редактирования аватарки"></button>
-            <form className="popup__form" name="avatar" method="post" noValidate>
-              <input id="avatar-input" className="popup__input popup__input_type_avatar" type="url" name="avatar"
-                placeholder="Ссылка на аватар" required />
-              <span className="popup__input-error avatar-input-error"></span>
-              <button type="submit" className="popup__save-button">Сохранить</button>
-            </form>
-          </div>
-        </div>
+        <PopupWithForm
+          name="avatar"
+          title="Обновить аватар"
+          ariaLabel="Закрыть окно редактирования аватарки"
+          buttonText="Сохранить"
+        >
+          <input id="avatar-input" className="popup__input popup__input_type_avatar" type="url" name="avatar"
+            placeholder="Ссылка на аватар" required />
+          <span className="popup__input-error avatar-input-error"></span>
+        </PopupWithForm>
+
+        <ImagePopup />
       </div>
     </div>
   );
