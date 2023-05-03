@@ -39,17 +39,7 @@ export default function App() {
         <Footer />
 
         <template className="place__card">
-          <li className="place__item">
-            <img className="place__picture" src="#" alt="" />
-            <button className="place__trash-button" type="button" aria-label="Удалить карточку"></button>
-            <div className="place__content">
-              <h2 className="place__text"></h2>
-              <div className="place__like">
-                <button className="place__like-button" type="button" aria-label="Лайкнуть карточку"></button>
-                <span className="place__like-counter"></span>
-              </div>
-            </div>
-          </li>
+
         </template>
 
         <PopupWithForm
