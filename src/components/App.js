@@ -4,13 +4,34 @@ import Footer from './Footer';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import { useState } from 'react';
 
 export default function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(true);
+  }
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
+  }
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true);
+  }
+
+
+
   return (
     <div className="App">
       <div className="page">
         <Header />
-        <Main />
+        <Main
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onEditAvatar={handleEditAvatarClick}
+        />
         <Footer />
 
         <template className="place__card">
@@ -32,6 +53,7 @@ export default function App() {
           title="Редактировать профиль"
           buttonText="Сохранить"
           ariaLabel="Закрыть окно редактирования профиля"
+          isOpen={isEditProfilePopupOpen}
         >
           <input id="name-input" className="popup__input popup__input_type_name" type="text" name="name"
             placeholder="Введите имя" minLength="2" maxLength="40" required />
@@ -46,6 +68,7 @@ export default function App() {
           title="Новое место"
           buttonText="Создать"
           ariaLabel="Закрыть окно редактирования карточки"
+          isOpen={isAddPlacePopupOpen}
         >
           <input id="place-input" className="popup__input popup__input_type_place" type="text" name="place"
             placeholder="Название" minLength="2" maxLength="30" required />
@@ -66,6 +89,7 @@ export default function App() {
           title="Обновить аватар"
           ariaLabel="Закрыть окно редактирования аватарки"
           buttonText="Сохранить"
+          isOpen={isEditAvatarPopupOpen}
         >
           <input id="avatar-input" className="popup__input popup__input_type_avatar" type="url" name="avatar"
             placeholder="Ссылка на аватар" required />
