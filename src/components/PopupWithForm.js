@@ -1,6 +1,6 @@
 export default function PopupWithForm(props) {
   return (
-    <div className={`popup popup_type_${props.name}`}>
+    <div className={`popup popup_type_${props.name} ${props.isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container">
         <h2 className="popup__header">{props.title}</h2>
         <button type="button" className="popup__close-button" aria-label={props.ariaLabel}></button>
