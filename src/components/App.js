@@ -21,7 +21,11 @@ export default function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+  }
 
   return (
     <div className="App">
@@ -54,6 +58,7 @@ export default function App() {
           buttonText="Сохранить"
           ariaLabel="Закрыть окно редактирования профиля"
           isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
         >
           <input id="name-input" className="popup__input popup__input_type_name" type="text" name="name"
             placeholder="Введите имя" minLength="2" maxLength="40" required />
@@ -69,6 +74,7 @@ export default function App() {
           buttonText="Создать"
           ariaLabel="Закрыть окно редактирования карточки"
           isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
         >
           <input id="place-input" className="popup__input popup__input_type_place" type="text" name="place"
             placeholder="Название" minLength="2" maxLength="30" required />
@@ -90,6 +96,7 @@ export default function App() {
           ariaLabel="Закрыть окно редактирования аватарки"
           buttonText="Сохранить"
           isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
         >
           <input id="avatar-input" className="popup__input popup__input_type_avatar" type="url" name="avatar"
             placeholder="Ссылка на аватар" required />
