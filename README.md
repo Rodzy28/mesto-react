@@ -9,7 +9,7 @@
 
 ### Чеклист:
 
-* [Чеклист ПР_10](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-10.pdf)
+* [Чеклист ПР_11](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-11.pdf)
 
 ### Стек технологий
 - HTML5
@@ -40,3 +40,6 @@
 
 ### Планы на улучшение
 - Увеличение фото карточки при наведении мыши
+- Валидация форм
+- Подтверждение удаление карточки
+- Индикаторы загрузки
