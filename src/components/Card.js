@@ -16,10 +16,14 @@ export default function Card(props) {
     props.onCardLike(props.card);
   }
 
+  function handleDeleteClick() {
+    props.onCardDelete(props.card._id);
+  }
+
   return (
     <li className="place__item">
       <img className="place__picture" onClick={handleCardClick} src={props.card.link} alt={props.card.name} />
-      {isOwn && <button className="place__trash-button" type="button" aria-label="Удалить карточку" />}
+      {isOwn && <button className="place__trash-button" type="button" onClick={handleDeleteClick} aria-label="Удалить карточку" />}
       <div className="place__content">
         <h2 className="place__text">{props.card.name}</h2>
         <div className="place__like">
