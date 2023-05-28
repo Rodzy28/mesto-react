@@ -18,6 +18,23 @@ export default function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Вариант от Ревьювера "Можно лучше". Как сделать закрытие по Escape.
+  // const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard.link
+  // useEffect(() => {
+  //   function closeByEscape(evt) {
+  //     if(evt.key === 'Escape') {
+  //       closeAllPopups();
+  //     }
+  //   }
+  //   if(isOpen) { // навешиваем только при открытии
+  //     document.addEventListener('keydown', closeByEscape);
+  //     return () => {
+  //       document.removeEventListener('keydown', closeByEscape);
+  //     }
+  //   }
+  // }, [isOpen]) 
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -72,32 +89,41 @@ export default function App() {
   }
 
   function handleUpdateUser(userData) {
+    setIsLoading(true);
     api.setUserInfo(userData)
       .then(data => {
         setCurrentUser(data);
         closeAllPopups();
       }).catch((err) => {
         console.log(err);
+      }).finally(() => {
+        setIsLoading(false);
       });
   }
 
   function handleUpdateAvatar(userAvatar) {
+    setIsLoading(true);
     api.setAvatar(userAvatar)
       .then(avatar => {
         setCurrentUser(avatar);
         closeAllPopups();
       }).catch((err) => {
         console.log(err);
+      }).finally(() => {
+        setIsLoading(false);
       });
   }
 
   function handleAddPlace(data) {
+    setIsLoading(true);
     api.postNewCard(data)
       .then(newCard => {
         setCards([newCard, ...cards]);
         closeAllPopups();
       }).catch((err) => {
         console.log(err);
+      }).finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -121,12 +147,14 @@ export default function App() {
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
+            isLoading={isLoading}
           />
 
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
             onAddPlace={handleAddPlace}
+            isLoading={isLoading}
           />
 
           <PopupWithForm
@@ -140,6 +168,7 @@ export default function App() {
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
+            isLoading={isLoading}
           />
 
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />

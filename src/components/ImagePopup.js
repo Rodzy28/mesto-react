@@ -1,4 +1,9 @@
-export default function ImagePopup({card, onClose}) {
+import { usePopupClose } from "../hooks/usePopupClose"
+
+export default function ImagePopup({ card, onClose }) {
+
+  usePopupClose(card.link, onClose);
+
   return (
     <div className={`popup popup_type_image ${card.link ? "popup_opened" : " "}`}>
       <figure className="popup__image-figure">

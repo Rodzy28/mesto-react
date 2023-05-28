@@ -1,7 +1,7 @@
 import PopupWithForm from "./PopupWithForm"
 import { useState, useEffect } from "react";
 
-export default function AddPlacePopup({onAddPlace, isOpen, onClose}) {
+export default function AddPlacePopup({ onAddPlace, isOpen, onClose, isLoading }) {
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
 
@@ -27,7 +27,7 @@ export default function AddPlacePopup({onAddPlace, isOpen, onClose}) {
     <PopupWithForm
       name="card"
       title="Новое место"
-      buttonText="Создать"
+      buttonText={isLoading ? 'Сохранение...' : 'Создать'}
       ariaLabel="Закрыть окно редактирования карточки"
       isOpen={isOpen}
       onClose={onClose}

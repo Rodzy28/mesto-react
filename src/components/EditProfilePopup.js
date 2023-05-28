@@ -2,7 +2,7 @@ import PopupWithForm from "./PopupWithForm"
 import { useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
+export default function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
 
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState('');
@@ -33,7 +33,7 @@ export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     <PopupWithForm
       name="profile"
       title="Редактировать профиль"
-      buttonText="Сохранить"
+      buttonText={isLoading ? 'Сохранение...' : 'Сохранить'}
       ariaLabel="Закрыть окно редактирования профиля"
       isOpen={isOpen}
       onClose={onClose}

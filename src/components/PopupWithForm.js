@@ -1,4 +1,9 @@
-export default function PopupWithForm({name, title, isOpen, onClose, ariaLabel, onSubmit, children, buttonText}) {
+import { usePopupClose } from "../hooks/usePopupClose"
+
+export default function PopupWithForm({ name, title, isOpen, onClose, ariaLabel, onSubmit, children, buttonText }) {
+
+  usePopupClose(isOpen, onClose);
+
   return (
     <div className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container">
