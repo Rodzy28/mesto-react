@@ -8,47 +8,51 @@ class Api {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
+  _request(url, options) {
+    return fetch(url, options).then(this._handlerServerResponse);
+  }
+
   getInitialCards() {
-    return fetch(`${this._url}/cards`, {
+    return this._request(`${this._url}/cards`, {
       method: 'GET',
-      headers: this._headers,
-    }).then(this._handlerServerResponse);
+      headers: this._headers
+    });
   }
 
   getUserInfo() {
-    return fetch(`${this._url}/users/me`, {
+    return this._request(`${this._url}/users/me`, {
       method: 'GET',
       headers: this._headers,
-    }).then(this._handlerServerResponse);
+    });
   }
 
   setUserInfo(data) {
-    return fetch(`${this._url}/users/me`, {
+    return this._request(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         about: data.about
       })
-    }).then(this._handlerServerResponse);
+    });
   }
 
   postNewCard(data) {
-    return fetch(`${this._url}/cards`, {
+    return this._request(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         link: data.link
       })
-    }).then(this._handlerServerResponse);
+    });
   }
 
   addLike(id, isLiked) {
-    return fetch(`${this._url}/cards/${id}/likes`, {
+    return this._request(`${this._url}/cards/${id}/likes`, {
       method: `${isLiked ? 'PUT' : 'DELETE'}`,
       headers: this._headers,
-    }).then(this._handlerServerResponse);
+    });
   }
 
   // deleteLike(id) {
@@ -59,20 +63,20 @@ class Api {
   // }
 
   deleteCard(id) {
-    return fetch(`${this._url}/cards/${id}`, {
+    return this._request(`${this._url}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._handlerServerResponse);
+    });
   }
 
   setAvatar(data) {
-    return fetch(`${this._url}/users/me/avatar`, {
+    return this._request(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatar
       })
-    }).then(this._handlerServerResponse);
+    });
   }
 }
 

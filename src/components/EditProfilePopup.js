@@ -2,7 +2,7 @@ import PopupWithForm from "./PopupWithForm"
 import { useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function EditProfilePopup(props) {
+export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
 
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState('');
@@ -11,11 +11,11 @@ export default function EditProfilePopup(props) {
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser, props.isOpen]);
+  }, [currentUser, isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onUpdateUser({
+    onUpdateUser({
       name,
       about: description,
     });
@@ -35,8 +35,8 @@ export default function EditProfilePopup(props) {
       title="Редактировать профиль"
       buttonText="Сохранить"
       ariaLabel="Закрыть окно редактирования профиля"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       onSubmit={handleSubmit}
     >
       <input id="name-input" className="popup__input popup__input_type_name" type="text" name="name"

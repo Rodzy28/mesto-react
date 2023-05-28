@@ -1,13 +1,13 @@
 import PopupWithForm from "./PopupWithForm"
 import { useState, useEffect } from "react";
 
-export default function AddPlacePopup(props) {
+export default function AddPlacePopup({onAddPlace, isOpen, onClose}) {
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onAddPlace({ name, link });
+    onAddPlace({ name, link });
   }
 
   function handleName(e) {
@@ -21,7 +21,7 @@ export default function AddPlacePopup(props) {
   useEffect(() => {
     setName('');
     setLink('');
-  }, [props.isOpen])
+  }, [isOpen])
 
   return (
     <PopupWithForm
@@ -29,8 +29,8 @@ export default function AddPlacePopup(props) {
       title="Новое место"
       buttonText="Создать"
       ariaLabel="Закрыть окно редактирования карточки"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       onSubmit={handleSubmit}
     >
       <input id="place-input" className="popup__input popup__input_type_place" value={name} onChange={handleName} type="text" name="place"
